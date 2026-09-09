@@ -13,7 +13,7 @@ const channelMeta = [
 ];
 
 export default function NotificationsSettings({ preview }: { preview: NotifPreview }) {
-  const [prefs, setPrefs] = useState<Record<string, NotifEvent>>(() =>
+  const [prefs, setPrefs] = useState<NotifEvent[]>(() =>
     initialPrefs(preview)
   );
   const failed = preview === 'failed';

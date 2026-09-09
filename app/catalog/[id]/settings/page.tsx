@@ -9,8 +9,9 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function SettingsPage({ params }: { params: { id: string } }) {
-  if (!CATALOG_IDS.includes(params.id)) {
+export default async function SettingsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  if (!CATALOG_IDS.includes(id)) {
     notFound();
   }
   return (

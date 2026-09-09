@@ -11,19 +11,20 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function ProductPage({
+export default async function ProductPage({
   params,
 }: {
-  params: { id: string; productId: string };
+  params: Promise<{ id: string; productId: string }>;
 }) {
-  if (!CATALOG_IDS.includes(params.id)) {
+  const { id, productId } = await params;
+  if (!CATALOG_IDS.includes(id)) {
     notFound();
   }
   return (
     <div className="min-h-screen bg-[#EDF1FA]">
       <Sidebar />
       <div className="pl-[116px] min-h-screen bg-[#EDF1FA]">
-        <ProductDetail productId={params.productId} />
+        <ProductDetail productId={productId} />
       </div>
     </div>
   );

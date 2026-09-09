@@ -10,8 +10,9 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function CatalogPage({ params }: { params: { id: string } }) {
-  if (!CATALOG_IDS.includes(params.id)) {
+export default async function CatalogPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  if (!CATALOG_IDS.includes(id)) {
     notFound();
   }
   return (
@@ -19,7 +20,7 @@ export default function CatalogPage({ params }: { params: { id: string } }) {
       <Sidebar />
       <div className="pl-[116px] min-h-screen bg-[#EDF1FA]">
         <Suspense fallback={<div className="min-h-screen bg-[#EDF1FA] pt-8 pb-16" />}>
-          <CatalogWorkspace id={params.id} />
+          <CatalogWorkspace id={id} />
         </Suspense>
       </div>
     </div>

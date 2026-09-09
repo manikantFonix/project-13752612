@@ -1,13 +1,14 @@
 import { SelectionProvider } from '../../../components/consumer-catalog/SelectionProvider';
 
-export default function ConsumerLayout({
+export default async function ConsumerLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { token: string };
+  params: Promise<{ token: string }>;
 }) {
+  const { token } = await params;
   return (
-    <SelectionProvider token={params.token}>{children}</SelectionProvider>
+    <SelectionProvider token={token}>{children}</SelectionProvider>
   );
 }

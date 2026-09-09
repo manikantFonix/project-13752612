@@ -58,7 +58,7 @@ export default function ConsumerProductRoute({
         className="min-h-screen bg-[#EDF1FA]"
         style={{ ['--brand' as any]: catalog.brand.primaryColor }}
       >
-        <ConsumerHeader brand={catalog.brand} showLogo={scenario !== 'brand-nologo'} />
+        <ConsumerHeader brand={catalog.brand} showLogo={true} />
         <div className="max-w-[1180px] mx-auto px-4 md:px-8 pt-6 pb-32">
           <WithdrawnView token={token} />
         </div>

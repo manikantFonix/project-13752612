@@ -563,7 +563,7 @@ export function historyFor(record: RecordItem): HistoryItem[] {
       category: r.category,
       status: r.status,
       cancelled: r.cancelled,
-      thumb: r.views.front,
+      thumb: r.views.front ?? '',
       date: r.createdDate,
     }));
 }
@@ -598,7 +598,7 @@ export function linkedProjects(record: RecordItem): LinkedProject[] {
         : r.status === 'approved'
         ? 'Approved'
         : 'Shared with customer',
-    thumb: r.views.front,
+    thumb: r.views.front ?? '',
     date: r.createdDate,
   }));
 }

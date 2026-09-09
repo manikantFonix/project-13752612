@@ -1,3 +1,5 @@
+import type { Customer } from './customers';
+
 export type Status =
   | 'draft'
   | 'ready'
@@ -15,25 +17,35 @@ export const VIEWS: { key: ViewKey; label: string }[] = [
   { key: 'worn', label: 'Worn' },
 ];
 
+export type ViewStatus = 'empty' | 'rendering' | 'ready';
+
 export interface RequestVersion {
   id: string;
   date: string;
-  current: boolean;
+  current?: boolean;
+  versionNo?: number;
+  label?: string;
+  image?: string;
+  notes?: string;
+  metal?: string;
+  fingerSize?: string;
+  centerStone?: string;
+  engraving?: string;
 }
 
-export interface ViewSet {
-  front: string;
-  side: string;
-  back: string;
-  worn: string;
-}
+export type ViewSet = Record<ViewKey, string | null>;
 
 export interface Quote {
-  amount: number;
+  amount?: number;
+  price?: number;
   notes?: string;
-  submitted: string;
-  status: 'offered' | 'accepted' | 'rejected';
+  note?: string;
+  submitted?: string;
+  validUntil?: string;
+  sentDate?: string;
+  status?: string;
   decidedOn?: string;
+  byRetailer?: boolean;
 }
 
 export interface Decision {
@@ -51,7 +63,7 @@ export interface Request {
   rejected?: boolean;
   quoteWaiting?: boolean;
   cancelled?: boolean;
-  customer?: { name: string; phone: string; email: string };
+  customer?: Customer;
   manufacturer?: { name: string; phone: string; email: string };
   linkState?: 'waiting' | 'expired' | 'used';
   decision?: Decision;

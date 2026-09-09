@@ -177,7 +177,7 @@ export default function DetailSheetDrawer({
           <Section icon="ri-file-list-3-line" title="Design Summary" action={readyPill}>
             <div className="mt-3 grid grid-cols-[1fr_88px] gap-3">
               <img
-                src={req.views.front}
+                src={req.views.front ?? undefined}
                 alt="Design front view"
                 className="w-full aspect-square object-cover rounded-[12px] border border-[#DCE3F0]"
               />
@@ -185,7 +185,7 @@ export default function DetailSheetDrawer({
                 {['side', 'back', 'worn'].map((k) => (
                   <img
                     key={k}
-                    src={req.views[k as keyof typeof req.views]}
+                    src={req.views[k as keyof typeof req.views] ?? undefined}
                     alt={`${k} view`}
                     className="w-full h-full object-cover rounded-[8px] border border-[#DCE3F0]"
                   />

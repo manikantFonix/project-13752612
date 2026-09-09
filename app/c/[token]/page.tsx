@@ -7,14 +7,15 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function ConsumerCatalogPage({
+export default async function ConsumerCatalogPage({
   params,
 }: {
-  params: { token: string };
+  params: Promise<{ token: string }>;
 }) {
+  const { token } = await params;
   return (
     <Suspense fallback={<div className="min-h-screen bg-[#EDF1FA]" />}>
-      <ConsumerCatalogRoute token={params.token} />
+      <ConsumerCatalogRoute token={token} />
     </Suspense>
   );
 }

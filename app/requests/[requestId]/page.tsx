@@ -24,19 +24,20 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function RequestDetailPage({
+export default async function RequestDetailPage({
   params,
 }: {
-  params: { requestId: string };
+  params: Promise<{ requestId: string }>;
 }) {
-  if (!KNOWN_IDS.includes(params.requestId)) {
+  const { requestId } = await params;
+  if (!KNOWN_IDS.includes(requestId)) {
     notFound();
   }
   return (
     <div className="min-h-screen bg-[#EDF1FA]">
       <Sidebar />
       <div className="pl-[116px] min-h-screen bg-[#EDF1FA]">
-        <RequestsWorkspace selectedId={params.requestId} />
+        <RequestsWorkspace selectedId={requestId} />
       </div>
     </div>
   );

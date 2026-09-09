@@ -18,9 +18,10 @@ type SettingsDemo =
   | 'saved1'
   | 'saved2';
 
-const METALS = METAL_LIST.map((m) =>
-  m.id === 'yellow' ? { ...m, locked: true } : m
-);
+const METALS = METAL_LIST.map((m) => ({
+  ...m,
+  locked: m.id === 'yellow',
+}));
 
 const demos: SettingsDemo[] = [
   'default',

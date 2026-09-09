@@ -92,7 +92,7 @@ function Row({
           <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#152E56]" />
         )}
         <img
-          src={r.views.front}
+          src={r.views.front ?? undefined}
           alt={r.category}
           className="w-11 h-11 rounded-[8px] object-cover bg-[#E4E9F4] shrink-0"
         />

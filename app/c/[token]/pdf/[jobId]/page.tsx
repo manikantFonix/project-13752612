@@ -10,14 +10,15 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function ConsumerPdfJobPage({
+export default async function ConsumerPdfJobPage({
   params,
 }: {
-  params: { token: string; jobId: string };
+  params: Promise<{ token: string; jobId: string }>;
 }) {
+  const { token, jobId } = await params;
   return (
     <Suspense fallback={<div className="min-h-screen bg-[#EDF1FA]" />}>
-      <ConsumerPdfRoute token={params.token} jobId={params.jobId} />
+      <ConsumerPdfRoute token={token} jobId={jobId} />
     </Suspense>
   );
 }

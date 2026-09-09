@@ -76,7 +76,7 @@ export interface CatalogRow {
   visitors: number;
   productsPublished: number;
   inquiries: number;
-  deleted: boolean;
+  deleted?: boolean;
 }
 
 export interface InquiryGroup {

@@ -29,16 +29,17 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function ConsumerProductPage({
+export default async function ConsumerProductPage({
   params,
 }: {
-  params: { token: string; productId: string };
+  params: Promise<{ token: string; productId: string }>;
 }) {
+  const { token, productId } = await params;
   return (
     <Suspense fallback={<div className="min-h-screen bg-[#EDF1FA]" />}>
       <ConsumerProductRoute
-        token={params.token}
-        productId={params.productId}
+        token={token}
+        productId={productId}
       />
     </Suspense>
   );

@@ -7,7 +7,7 @@ export interface Catalog {
   name: string;
   productCount: number;
   status: 'Live' | 'Not published';
-  image: string;
+  image?: string;
 }
 
 interface Props {
@@ -22,11 +22,13 @@ export default function CatalogCard({ catalog }: Props) {
       className="group bg-white border border-[#DCE3F0] rounded-[12px] overflow-hidden block text-left transition-colors duration-150 hover:border-[#C6D0E6] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#152E56] focus-visible:ring-offset-2 focus-visible:ring-offset-[#EDF1FA]"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-[#E4E9F4]">
-        <img
-          src={catalog.image}
-          alt={catalog.name}
-          className="w-full h-full object-cover"
-        />
+        {catalog.image && (
+          <img
+            src={catalog.image}
+            alt={catalog.name}
+            className="w-full h-full object-cover"
+          />
+        )}
         <span
           className={`absolute top-2 right-2 inline-flex items-center h-6 px-2 rounded-full text-xs font-medium ${
             live ? 'text-[#3D6B54]' : 'text-[#5D6C8A]'

@@ -30,11 +30,11 @@ const CUSTOMER_REASON = 'Add a customer before sharing.';
 
 function buildDrafts(req: Request): Draft[] {
   const fv = req.viewVersions.front;
-  if (!fv.length) return [{ id: 'v1', label: 'V1', image: req.views.front }];
+  if (!fv.length) return [{ id: 'v1', label: 'V1', image: req.views.front ?? '' }];
   return fv.map((v, i) => ({
     id: v.id,
     label: `V${i + 1} · ${v.date}`,
-    image: req.views.front,
+    image: req.views.front ?? '',
   }));
 }
 
@@ -46,7 +46,7 @@ const THREE_DRAFTS: Draft[] = [
 
 export default function DesignTab({ req, canSwitch, customerSet, onShare, onShareManufacturer }: Props) {
   const baseDrafts = buildDrafts(req);
-  const oneImage = req.views.front;
+  const oneImage = req.views.front ?? '';
   const [metal, setMetal] = useState<MetalId>('yellow');
   const [activeView, setActiveView] = useState<ViewKey>('front');
   const [drafts, setDrafts] = useState<Draft[]>(baseDrafts);
@@ -61,6 +61,7 @@ export default function DesignTab({ req, canSwitch, customerSet, onShare, onShar
   const [frontStage, setFrontStage] = useState(0);
   const [angleStage, setAngleStage] = useState(0);
   const [refineOpen, setRefineOpen] = useState(false);
+  const [anglesOpen, setAnglesOpen] = useState(false);
 
   const locked = !canSwitch || preview === 'locked';
   const frontRunning = phase === 'generating-front';
@@ -73,7 +74,7 @@ export default function DesignTab({ req, canSwitch, customerSet, onShare, onShar
   const activeLabel = VIEWS.find((v) => v.key === activeView)?.label ?? 'Front';
 
   const imageFor = (v: ViewKey) =>
-    v === 'front' ? currentDraftImage : req.views[v];
+    v === 'front' ? currentDraftImage : (req.views[v] ?? '');
 
   useEffect(() => {
     if (phase !== 'generating-front') return;

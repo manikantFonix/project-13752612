@@ -57,7 +57,7 @@ export const events: NotifEvent[] = [
   },
 ];
 
-export function initialPrefs(preview: NotifPreview): Record<string, NotifEvent> {
+export function initialPrefs(preview: NotifPreview): NotifEvent[] {
   return events.map((e) => {
     let email = e.email;
     let sms = e.sms;

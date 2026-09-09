@@ -44,7 +44,7 @@ const demoLabel: Record<DetailDemo, string> = {
 
 const VIEWS = ['Front', 'Side', 'Back', 'Worn'] as const;
 
-const VIEW_IMG: Record<string, string> = {
+const VIEW_IMG: Record<string, Record<string, string>> = {
   yellow: {
     Front:
       'https://readdy.ai/api/search-image?query=Professional%20studio%20product%20photograph%20of%20a%20yellow%20gold%20solitaire%20engagement%20ring%20with%20a%20six%20prong%20setting%20and%20brilliant%20cut%20diamond%20shot%20from%20the%20front%2C%20plain%20pale%20off-white%20seamless%20background%2C%20soft%20even%20diffused%20lighting%2C%20minimalist%20luxury%20jewelry%20product%20shot%2C%20crisp%20focus%2C%20clean%20composition&width=440&height=440&seq=41&orientation=squarish',

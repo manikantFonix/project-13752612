@@ -110,7 +110,7 @@ export default function CreatePdfDialog({
     });
   }, [baseProducts, search]);
 
-  const dropped = demo === 'dropped' ? 2 : 0;
+  const dropped: number = demo === 'dropped' ? 2 : 0;
   const shownIncluded = demo === 'dropped' ? Math.max(0, selectedCount - dropped) : selectedCount;
 
   useEffect(() => {
@@ -485,7 +485,8 @@ function SelectPhase({
           <p className="p-4 text-[13px] text-[#5D6C8A]">No pieces match your search.</p>
         ) : (
           products.map((p) => {
-            const reason = includeReason(p) === 'ok' ? null : reasonText[includeReason(p)];
+            const r = includeReason(p);
+            const reason = r === 'ok' ? null : reasonText[r];
             const disabled = capReached && !selected.has(p.id);
             const isChecked = selected.has(p.id);
             const dimmed = reason !== null || disabled;

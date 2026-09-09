@@ -252,7 +252,7 @@ export default function CustomerSendDialog({
             <div className="flex-1 rounded-[12px] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={req.views.front}
+                src={req.views.front ?? undefined}
                 alt="Design front view"
                 className="w-full h-[220px] object-cover object-top"
               />
@@ -262,7 +262,7 @@ export default function CustomerSendDialog({
                 <div key={v} className="flex-1 rounded-[12px] overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={req.views[v]}
+                    src={req.views[v] ?? undefined}
                     alt={`Design ${v} view`}
                     className="w-full h-full object-cover object-top"
                   />

@@ -393,7 +393,7 @@ export default function CustomerTab({
                   Shared on {sharedDate}
                 </p>
               </div>
-              {canChange && scenario === 'not-shared' && (
+              {canChange && (scenario as string) === 'not-shared' && (
                 <button
                   type="button"
                   onClick={onOpenPicker}

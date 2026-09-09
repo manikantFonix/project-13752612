@@ -22,19 +22,20 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export default function LeadDetailPage({
+export default async function LeadDetailPage({
   params,
 }: {
-  params: { leadId: string };
+  params: Promise<{ leadId: string }>;
 }) {
-  if (!KNOWN_IDS.includes(params.leadId)) {
+  const { leadId } = await params;
+  if (!KNOWN_IDS.includes(leadId)) {
     notFound();
   }
   return (
     <div className="min-h-screen bg-[#EDF1FA]">
       <Sidebar />
       <div className="pl-[116px] min-h-screen bg-[#EDF1FA]">
-        <LeadDetailRoute leadId={params.leadId} />
+        <LeadDetailRoute leadId={leadId} />
       </div>
     </div>
   );

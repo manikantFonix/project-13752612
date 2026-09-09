@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { METAL_LIST } from '../lib/metals';
 
+import { type Catalog } from './CatalogCard';
+
 export type DialogDemo =
   | 'default'
   | 'valid'
@@ -11,17 +13,12 @@ export type DialogDemo =
   | 'saving'
   | 'error';
 
-export interface NewCatalog {
-  id: string;
-  name: string;
-  productCount: number;
-  status: 'Not published';
-}
+export type NewCatalog = Catalog;
 
 interface Props {
   open: boolean;
   onClose: () => void;
-  onCreated: (catalog: NewCatalog) => void;
+  onCreated: (catalog: Catalog) => void;
 }
 
 const METALS = METAL_LIST;
